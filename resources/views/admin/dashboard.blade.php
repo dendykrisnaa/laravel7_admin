@@ -313,8 +313,8 @@
                                 <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="public/images/admin.jpg">
                             </a>
                             <div class="media-body">
-                                <h2 class="text-white display-6">Jim Doe</h2>
-                                <p class="text-light">Project Manager</p>
+                                <h2 class="text-white display-6">Dendy Krisna</h2>
+                                <p class="text-light">361955401160</p>
                             </div>
                         </div>
                     </div>
