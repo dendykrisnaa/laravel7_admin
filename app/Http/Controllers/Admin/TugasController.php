@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Task;
+use App\kategori;
 use Illuminate\Http\Request;
 
 class TugasController extends Controller
@@ -28,7 +29,9 @@ class TugasController extends Controller
      */
     public function create()
     {
-        return view('admin.tugas.create');
+        $data_kategori = kategori::all();
+        $pagename = 'Form Input Tugas';
+        return view('admin.tugas.create', compact('pagename', 'data_kategori'));
     }
 
     /**
@@ -40,6 +43,23 @@ class TugasController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request);
+        $request->validate([
+            'txtnama_tugas'=>'required', //required = tidak boleh kosong
+            'optionid_kategori'=>'required',
+            'txtketerangan_tugas'=>'required',
+            'radiostatus_tugas'=>'required',
+        ]);
+
+        $data_tugas = new Task([
+            'nama_tugas'=> $request->get('txtnama_tugas'),
+            'id_kategori'=> $request->get('optionid_kategori'),
+            'keterangan_tugas'=> $request->get('txtketerangan_tugas'),
+            'status_tugas'=> $request->get('radiostatus_tugas'),
+        ]);
+
+        $data_tugas->save();
+        return redirect('admin/tugas')->with('sukses','tugas berhasil disimpan');
     }
 
     /**
