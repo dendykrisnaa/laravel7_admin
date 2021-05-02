@@ -44,8 +44,17 @@
 
                     <div class="col-md-12">
                         <div class="card">
+
+                            @if(session()->get('sukses'))
+                                <div class="alert alert-success">
+                                    {{session()->get('sukses')}}
+                                </div>
+                            @endif
+
                             <div class="card-header">
                                 <strong class="card-title">{{$pagename}}</strong>
+                                <a class="btn btn-primary pull-right" href="{{route('tugas.create')}}"
+                                >Tambahkan Tugas</a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -56,6 +65,8 @@
                                             <th>Kategori</th>
                                             <th>Keterangan</th>
                                             <th>Status</th>
+                                            <!-- <th>Tanggal Ditambahkan</th>
+                                            <th>Terakhir Diubah</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -66,6 +77,9 @@
                                                 <td>{{$row->id_kategori}}</td>
                                                 <td>{{$row->ket_tugas}}</td>
                                                 <td>{{$row->status_tugas}}</td>
+                                                <!-- <td>{{$row->created_at}}</td>
+                                                <td>{{$row->updated_at}}</td> -->
+                                                <td></td>
                                             </tr>
                                         @endforeach
                                         <!--

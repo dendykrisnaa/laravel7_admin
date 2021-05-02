@@ -54,7 +54,7 @@ class TugasController extends Controller
         $data_tugas = new Task([
             'nama_tugas'=> $request->get('txtnama_tugas'),
             'id_kategori'=> $request->get('optionid_kategori'),
-            'keterangan_tugas'=> $request->get('txtketerangan_tugas'),
+            'ket_tugas'=> $request->get('txtketerangan_tugas'),
             'status_tugas'=> $request->get('radiostatus_tugas'),
         ]);
 
