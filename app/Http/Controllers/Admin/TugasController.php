@@ -82,6 +82,10 @@ class TugasController extends Controller
     public function edit($id)
     {
         //
+        $data_kategori=kategori::all();
+        $pagename = 'Update Tugas';
+        $data=Task::find($id);
+        return view('admin.tugas.edit', compact('data', 'pagename', 'data_kategori'));
     }
 
     /**

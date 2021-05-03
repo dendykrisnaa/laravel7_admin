@@ -16,6 +16,8 @@
 
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
+<!--Fontawesome icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 <div class="breadcrumbs">
             <div class="col-sm-4">
@@ -67,6 +69,8 @@
                                             <th>Status</th>
                                             <!-- <th>Tanggal Ditambahkan</th>
                                             <th>Terakhir Diubah</th> -->
+                                            <th>Edit</th>
+                                            <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -79,17 +83,15 @@
                                                 <td>{{$row->status_tugas}}</td>
                                                 <!-- <td>{{$row->created_at}}</td>
                                                 <td>{{$row->updated_at}}</td> -->
-                                                <td></td>
+                                                <td> <a href="{{route('tugas.edit',$row->id)}}" class="btn btn-primary">
+                                                <!-- <i class="fas fa-edit"></i> -->
+                                                Edit</a></td>
+                                                <td> <a href="#" class="btn btn-danger">
+                                                <!-- <i class="fas fa-trash-alt"></i> -->
+                                                Hapus</a></td>
                                             </tr>
                                         @endforeach
-                                        <!--
-                                        <tr>
-                                            <td>Garrett Winters</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>$170,750</td>
-                                        </tr>
-                                        -->
+
                                     </tbody>
                                 </table>
                             </div>
