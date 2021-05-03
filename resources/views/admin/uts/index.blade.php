@@ -52,23 +52,19 @@
                                     {{session()->get('sukses')}}
                                 </div>
                             @endif
-
                             <div class="card-header">
                                 <strong class="card-title">{{$pagename}}</strong>
-                                <a class="btn btn-primary pull-right" href="{{route('tugas.create')}}"
-                                >Tambahkan Tugas</a>
+                                <a class="btn btn-primary pull-right" href="{{route('uts.create')}}"
+                                >Tambahkan Mata Kuliah</a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nama</th>
-                                            <th>Kategori</th>
-                                            <th>Keterangan</th>
-                                            <th>Status</th>
-                                            <!-- <th>Tanggal Ditambahkan</th>
-                                            <th>Terakhir Diubah</th> -->
+                                            <th>Mata Kuliah</th>
+                                            <th>Dosen</th>
+                                            <th>Hari</th>
                                             <th>Edit</th>
                                             <th>Hapus</th>
                                         </tr>
@@ -77,17 +73,13 @@
                                         @foreach($data as $i=>$row)
                                             <tr>
                                                 <td>{{++$i}}</td>
-                                                <td>{{$row->nama_tugas}}</td>
-                                                <td>{{$row->id_kategori}}</td>
-                                                <td>{{$row->ket_tugas}}</td>
-                                                <td>{{$row->status_tugas}}</td>
-                                                <!-- <td>{{$row->created_at}}</td>
-                                                <td>{{$row->updated_at}}</td> -->
-                                                <td> <a href="{{route('tugas.edit',$row->id)}}" class="btn btn-primary">
-                                                <!-- <i class="fas fa-edit"></i> -->
+                                                <td>{{$row->mata_kuliah}}</td>
+                                                <td>{{$row->dosen}}</td>
+                                                <td>{{$row->hari}}</td>
+                                                <td> <a href="{{route('uts.edit',$row->id)}}" class="btn btn-primary">
                                                 Edit</a></td>
                                                 <td>
-                                                    <form action="{{route('tugas.destroy', $row->id)}}" method="post">
+                                                    <form action="{{route('uts.destroy', $row->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-danger" type="submit">Hapus</button>

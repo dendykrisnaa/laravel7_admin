@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\UTS;
 use Illuminate\Http\Request;
 
 class UTSController extends Controller
@@ -15,9 +16,9 @@ class UTSController extends Controller
     public function index()
     {
         //
-        $pagename='Data UTS';
-        $data=Task::all();
-        return view('admin.uts.index');
+        $pagename='Jadwal UTS';
+        $data=UTS::all();
+        return view('admin.uts.index', compact('data','pagename'));
     }
 
     /**
@@ -28,6 +29,8 @@ class UTSController extends Controller
     public function create()
     {
         //
+        $pagename = 'Form Input Mata Kuliah';
+        return view('admin.uts.create', compact('pagename'));
     }
 
     /**
@@ -39,6 +42,20 @@ class UTSController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'txtmata_kuliah'=>'required', //required = tidak boleh kosong
+            'txt_dosen'=>'required',
+            'txt_hari'=>'required',
+        ]);
+
+        $data_uts = new UTS([
+            'mata_kuliah'=> $request->get('txtmata_kuliah'),
+            'dosen'=> $request->get('txt_dosen'),
+            'hari'=> $request->get('txt_hari'),
+        ]);
+
+        $data_uts->save();
+        return redirect('admin/uts')->with('sukses','data UTS berhasil disimpan');
     }
 
     /**
@@ -61,6 +78,9 @@ class UTSController extends Controller
     public function edit($id)
     {
         //
+        $pagename = 'Update Mata Kuliah UTS';
+        $data=UTS::find($id);
+        return view('admin.uts.edit', compact('data', 'pagename'));
     }
 
     /**
@@ -73,6 +93,20 @@ class UTSController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'txtmata_kuliah'=>'required', //required = tidak boleh kosong
+            'txt_dosen'=>'required',
+            'txt_hari'=>'required',
+        ]);
+
+        $uts=UTS::find($id);
+
+        $uts->nama_tugas = $request->get('txtmata_kuliah');
+        $uts->id_kategori= $request->get('txt_dosen');
+        $uts->ket_tugas= $request->get('txt_hari');
+
+        $uts->save();
+        return redirect('admin/uts')->with('sukses','data UTS berhasil diupdate');
     }
 
     /**
@@ -84,5 +118,9 @@ class UTSController extends Controller
     public function destroy($id)
     {
         //
+        $uts = UTS::find($id);
+
+        $uts->delete();
+        return redirect('admin/uts')->with('sukses','data UTS telah dihapus');
     }
 }
