@@ -17,7 +17,7 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 <!--Fontawesome icon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
 
 <div class="breadcrumbs">
             <div class="col-sm-4">
@@ -86,9 +86,13 @@
                                                 <td> <a href="{{route('tugas.edit',$row->id)}}" class="btn btn-primary">
                                                 <!-- <i class="fas fa-edit"></i> -->
                                                 Edit</a></td>
-                                                <td> <a href="#" class="btn btn-danger">
-                                                <!-- <i class="fas fa-trash-alt"></i> -->
-                                                Hapus</a></td>
+                                                <td>
+                                                    <form action="{{route('tugas.destroy', $row->id)}}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="btn btn-danger" type="submit">Hapus</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
 
