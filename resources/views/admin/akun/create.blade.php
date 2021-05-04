@@ -62,23 +62,22 @@
                         </div>
                     @endif
 
-                        <form action="{{route('uts.update', $data->id)}}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        @method('PATCH')
+                        <form action="{{route('akun.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         @csrf
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Mata Kuliah</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtmata_kuliah" value="{{$data->mata_kuliah}}" placeholder="Tuliskan nama mata kuliah" class="form-control"><small class="form-text text-muted"></small></div>
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nomor Akun</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtno_akun" placeholder="Tuliskan nomor akun" class="form-control"><small class="form-text text-muted"></small></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Dosen</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txt_dosen" value="{{$data->dosen}}" placeholder="Tuliskan nama dosen" class="form-control"><small class="form-text text-muted"></small></div>
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama Akun</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txtnama_akun" placeholder="Tuliskan nama akun" class="form-control"><small class="form-text text-muted"></small></div>
                     </div>
                     <div class="row form-group">
-                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Hari</label></div>
-                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txt_hari" value="{{$data->hari}}" placeholder="Tuliskan nama hari" class="form-control"><small class="form-text text-muted"></small></div>
+                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Saldo</label></div>
+                        <div class="col-12 col-md-9"><input type="text" id="text-input" name="txt_saldo" placeholder="Tuliskan saldo (Rp)" class="form-control"><small class="form-text text-muted"></small></div>
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">
-                    <i class="fa fa-dot-circle-o"></i> Update
+                    <i class="fa fa-dot-circle-o"></i> Simpan
                     </button>
                     <button type="reset" class="btn btn-danger btn-sm">
                     <i class="fa fa-ban"></i> Reset
