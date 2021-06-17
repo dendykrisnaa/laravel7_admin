@@ -56,7 +56,7 @@
                             <div class="card-header">
                                 <strong class="card-title">{{$pagename}}</strong>
                                 <a class="btn btn-primary pull-right" href="{{route('roles.create')}}"
-                                >Tambahkan</a>
+                                >Tambah Role</a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">

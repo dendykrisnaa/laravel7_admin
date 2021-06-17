@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use DB;
 
 class RoleController extends Controller
 {
@@ -28,7 +29,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        $pagename='Tambah Role';
+        $allPermission=Permission::all();
+        return view('admin.role.create', compact('pagename','allPermission'));
     }
 
     /**
@@ -39,7 +42,20 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'txtnama_role'=>'required',
+            'optionid_permission'=>'required|array',
+            'permission.*'=>'required|string',
+        ],[
+            'txtnama_role.required'=>"nama role harus diisi",
+            'permission.required'=>"anda harus memilih permission",
+            'permission.*.required'=>"anda harus memilih permission",
+        ]);
+
+        $role=Role::create(['name'=>$request->input('txtnama_role')]);
+        $role->syncPermissions($request->input('optionid_permission'));
+
+        return redirect()->action('Admin\RoleController@index')->with('sukses','Role berhasil dibuat');
     }
 
     /**
@@ -61,7 +77,13 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pagename='Edit Role';
+        $role=Role::find($id);
+        $allPermission=Permission::all();
+        $rolePermission=DB::table('role_has_permissions')->where('role_has_permissions.role_id', $id)
+            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+            ->all();
+        return view('admin.role.edit', compact('pagename','allPermission','role','rolePermission'));
     }
 
     /**
@@ -73,7 +95,23 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'txtnama_role'=>'required',
+            'optionid_permission'=>'required|array',
+            'permission.*'=>'required|string',
+        ],[
+            'txtnama_role.required'=>"nama role harus diisi",
+            'permission.required'=>"anda harus memilih permission",
+            'permission.*.required'=>"anda harus memilih permission",
+        ]);
+
+        $role=Role::find($id);
+        $role->name=$request->input('txtnama_role');
+        $role->update();
+
+        $role->syncPermissions($request->input('optionid_permission'));
+
+        return redirect()->action('Admin\RoleController@index')->with('sukses','Role berhasil diupdate');
     }
 
     /**
@@ -84,6 +122,9 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $role=Role::find($id);
+        $role->delete();
+
+        return redirect()->action('Admin\RoleController@index')->with('sukses','Role berhasil dihapus');
     }
 }
