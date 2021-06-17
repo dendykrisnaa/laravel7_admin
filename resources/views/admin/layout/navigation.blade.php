@@ -13,10 +13,11 @@
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="{{url('/admin')}}"> <i class="menu-icon fa fa-dashboard"></i>Beranda </a>
-                        <a href="{{url('/admin/kategori')}}"> <i class="menu-icon fa fa-dashboard"></i>Kategori </a>
-                        <a href="{{url('/admin/tugas')}}"> <i class="menu-icon fa fa-dashboard"></i>Tugas </a>
-                        <a href="{{url('/admin/uts')}}"> <i class="menu-icon fa fa-tasks"></i>UTS </a>
-                        <a href="{{url('/admin/akun')}}"> <i class="menu-icon fa fa-tasks"></i>Akun </a>
+                        <a href="{{url('/admin/kategori')}}"> <i class="menu-icon fa fa-table"></i>Kategori </a>
+                        <a href="{{url('/admin/tugas')}}"> <i class="menu-icon fa fa-list"></i>Tugas </a>
+                        <a href="{{url('/admin/uts')}}"> <i class="menu-icon fa fa-list"></i>UTS </a>
+                        <a href="{{url('/admin/akun')}}"> <i class="menu-icon fa fa-users"></i>Akun </a>
+                        <a href="{{url('/admin/roles')}}"> <i class="menu-icon fa fa-server"></i>Role </a>
                     </li>
                     <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
