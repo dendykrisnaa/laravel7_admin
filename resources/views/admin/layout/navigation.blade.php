@@ -17,8 +17,10 @@
                         <a href="{{url('/admin/tugas')}}"> <i class="menu-icon fa fa-list"></i>Tugas </a>
                         <a href="{{url('/admin/uts')}}"> <i class="menu-icon fa fa-calendar"></i>UTS </a>
                         <a href="{{url('/admin/akun')}}"> <i class="menu-icon fa fa-address-card"></i>Akun </a>
+                        @role('admin')
                         <a href="{{url('/admin/roles')}}"> <i class="menu-icon fa fa-database"></i>Role </a>
                         <a href="{{url('/admin/users')}}"> <i class="menu-icon fa fa-users"></i>User </a>
+                        @endrole
                     </li>
                     <h3 class="menu-title">Extras</h3><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
