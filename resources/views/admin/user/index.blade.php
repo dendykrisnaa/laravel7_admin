@@ -52,34 +52,41 @@
                                     {{session()->get('sukses')}}
                                 </div>
                             @endif
+
                             <div class="card-header">
                                 <strong class="card-title">{{$pagename}}</strong>
-                                <a class="btn btn-primary pull-right" href="{{route('akun.create')}}"
-                                >Tambahkan Akun</a>
+                                <a class="btn btn-primary pull-right" href="{{route('users.create')}}"
+                                >Tambah User</a>
                             </div>
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Nomor Akun</th>
-                                            <th>Nama Akun</th>
-                                            <th>Saldo</th>
+                                            <th>Nama</th>
+                                            <th>Email</th>
+                                            <th>Role</th>
                                             <th>Edit</th>
                                             <th>Hapus</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($data as $i=>$row)
+                                        @foreach($allUser as $i=>$row)
                                             <tr>
                                                 <td>{{++$i}}</td>
-                                                <td>00{{$row->noAkun}}</td>
-                                                <td>{{$row->namaAkun}}</td>
-                                                <td>Rp. {{$row->saldo}}</td>
-                                                <td> <a href="{{route('akun.edit',$row->id)}}" class="btn btn-primary">
+                                                <td>{{$row->name}}</td>
+                                                <td>{{$row->email}}</td>
+                                                <td>
+                                                    @if (!empty($row->getRoleNames()))
+                                                        @foreach ($row->getRoleNames() as $role)
+                                                            <label class="badge badge-success">{{$role}}</label>
+                                                        @endforeach
+                                                    @endif
+                                                </td>
+                                                <td> <a href="{{route('users.edit',$row->id)}}" class="btn btn-primary">
                                                 Edit</a></td>
                                                 <td>
-                                                    <form action="{{route('akun.destroy', $row->id)}}" method="post">
+                                                    <form action="{{route('users.destroy', $row->id)}}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-danger" type="submit">Hapus</button>
