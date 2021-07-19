@@ -3,3 +3,8 @@
 *.scss linguist-vendored
 *.js linguist-vendored
 CHANGELOG.md export-ignore
+
+*.md liguist-detectable
+README.md -linguist-documentation
+
+*.dart linguist-language=PHP
