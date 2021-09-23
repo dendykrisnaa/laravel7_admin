@@ -26,4 +26,25 @@ class AuthController extends Controller
 
         return response()->json($user, 201);
     }
+
+    public function login(Request $request){
+        $validateData = $request->validate([
+            'email' => 'email |required | unique:users',
+            'password' => 'required | confirmed',
+        ]);
+
+        $login_detail = request(['email','password']);
+
+        if(!Auth::attempt($login_detail)){
+            return response()->json([
+                'error' => 'login gagal. Silahkan cek detail login'
+            ], 401);
+        }
+
+        $user = $request->user();
+
+        $tokenResult = $user->createToken('AccessToken');
+        $token = $tokenResult->token;
+
+    }
 }
