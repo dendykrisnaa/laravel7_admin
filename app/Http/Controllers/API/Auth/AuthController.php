@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\User;   //tadinya error App\Http\Controllers\API\Auth\User not found.
+                //Tak kasih ini kena soalnya butuh terhubung sama User.php
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -11,7 +14,7 @@ class AuthController extends Controller
     public function register(Request $request){
         $validateData = $request->validate([
             'name' => 'required|max:25',
-            'email' => 'email |required | unique:users',
+            'email' => 'email | required | unique:users',
             'password' => 'required | confirmed',
         ]);
 
@@ -22,15 +25,15 @@ class AuthController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
-        $user->save;
+        $user->save();
 
         return response()->json($user, 201);
     }
 
     public function login(Request $request){
         $validateData = $request->validate([
-            'email' => 'email |required | unique:users',
-            'password' => 'required | confirmed',
+            'email' => 'email |required',
+            'password' => 'required',
         ]);
 
         $login_detail = request(['email','password']);
