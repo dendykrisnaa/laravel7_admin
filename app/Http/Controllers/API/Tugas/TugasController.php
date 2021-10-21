@@ -47,4 +47,8 @@ class TugasController extends Controller
 
         return response()->json($data, 201);
     }
+
+    public function destroy(Request $request){
+        $data = Task::where('id','=',$request->id)->first();
+    }
 }
