@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class TugasController extends Controller
 {
+    public function getAll(){
+        $data=DB::table('tasks')
+            ->orderBy('id','desc')
+            ->get();
+
+        return response()->json($data, 200);
+    }
     public function store(Request $request){
         $validateData=$request->validate([
             'id' => 'required',
@@ -50,5 +57,16 @@ class TugasController extends Controller
 
     public function destroy(Request $request){
         $data = Task::where('id','=',$request->id)->first();
+
+        if(!empty($data)){
+            $data->delete();
+
+            return response()->json($data, 200);
+
+        } else {
+            return response()->json([
+                'error' => 'data tidak ditemukan'
+            ], 404);
+        }
     }
 }
