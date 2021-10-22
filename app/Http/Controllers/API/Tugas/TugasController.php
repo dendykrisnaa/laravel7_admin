@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Tugas;
 use App\Http\Controllers\Controller;
 use App\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TugasController extends Controller
 {
